@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSS Feed Website</title>
+</head>
+<body>
+  <header>
+    <h1>Latest News</h1>
+  </header>
+  <div class="container">
+    <h2>RSS Feed</h2>
+    <div class="rss-feed" id="rss-feed">
+      <p>Loading feed...</p>
+    </div>
+  </div>
+  
+  <script>
+    fetch("https://www.espn.com/espn/rss/nba/news")
+      .then(response => response.text())
+      .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+      .then(data => {
+        let items = data.querySelectorAll("item");
+        let output = "";
+        items.forEach(el => {
+          output += `<h3><a href="${el.querySelector("link").textContent}" target="_blank">${el.querySelector("title").textContent}</a></h3>`;
+          output += `<p>${el.querySelector("description").textContent}</p>`;
+        });
+        document.getElementById("rss-feed").innerHTML = output;
+      });
+  </script>
+</body>
+</html>
