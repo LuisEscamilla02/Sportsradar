@@ -8,51 +8,61 @@
 </head>
 <body>
   <header>
-    <h1>Welcome to Our Website</h1>
+    <h1>SportsRadar</h1>
     <img src="/Users/luisescamilla/Downloads/DALL·E 2025-03-06 11.42.42 - A modern and dynamic logo for a sports news website called 'SportsRadar'. The design integrates a basketball with satellite elements, creating a futur.webp" alt="SportsRadar">
   </header>
   <div class="container">
-    <h2>Featured Article</h2>
-    <p>Below is the latest article embedded on our website.</p>
-    <div class="article-area">
-      <h3>NBA</h3>
-      <script>
-        fetch("https://www.espn.com/espn/rss/nba/news")
-          .then(response => response.text())
-          .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-          .then(data => {
-            let items = data.querySelectorAll("item");
-            let output = "";
-            items.forEach(el => {
-              output += `<h3><a href="${el.querySelector("link").textContent}">${el.querySelector("title").textContent}</a></h3>`;
-            });
-            document.getElementById("rss-feed").innerHTML = output;
-          });
-          
-        </script>
-        <div id="rss-feed"></div>
-        <script>
-          function loadRSS(feedUrl, elementId) {
-            fetch(feedUrl)
+    <h2>Featured Articles</h2>
+    <p>Below are the latest articles embedded on our website.</p>
+      <div class="article-area">
+        <h2>NBA News</h2>
+        <div id="nba-feed"></div>
+    
+        <h2>NFL News</h2>
+        <div id="nfl-feed"></div>
+    
+        <h2>MLB News</h2>
+        <div id="mlb-feed"></div>
+    </div>
+    <script>
+      function loadRSS(feedUrl, elementId, sportIcon) {
+          fetch(feedUrl)
               .then(response => response.text())
               .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
               .then(data => {
-                let items = data.querySelectorAll("item");
-                let output = "";
-                items.forEach(el => {
-                  output += `<h3><a href="${el.querySelector("link").textContent}" target="_blank">${el.querySelector("title").textContent}</a></h3>`;
-                  output += `<p>${el.querySelector("description").textContent}</p>`;
-                });
-                document.getElementById(elementId).innerHTML = output;
+                  let items = data.querySelectorAll("item");
+                  let output = "";
+                  items.forEach((el, index) => {
+                      if (index < 5) {  // Limits to 5 articles per section
+                          let title = el.querySelector("title").textContent;
+                          let link = el.querySelector("link").textContent;
+                          let description = el.querySelector("description") ? el.querySelector("description").textContent : "";
+  
+                          output += `
+                              <div class="article-card">
+                                  <img src="${sportIcon}" alt="Sport Icon">
+                                  <div class="article-content">
+                                      <h3><a href="${link}" target="_blank">${title}</a></h3>
+                                      <p>${description}</p>
+                                  </div>
+                              </div>
+                          `;
+                      }
+                  });
+                  document.getElementById(elementId).innerHTML = output;
               });
-          }
-          
-          loadRSS("https://www.espn.com/espn/rss/nfl/news", "nfl-feed");
-          
-        </script>  
-
-      
-    </div>
+      }
+  
+      // Updated sport-specific images
+      const basketballIcon = "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png";
+      const footballIcon = "https://m.media-amazon.com/images/I/61ceQO+CuVL._AC_UF1000,1000_QL80_.jpg";
+      const baseballIcon = "https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/Baseball_%28crop%29.jpg/800px-Baseball_%28crop%29.jpg";
+  
+      // Load RSS Feeds with sport icons
+      loadRSS("https://www.espn.com/espn/rss/nba/news", "nba-feed", basketballIcon);
+      loadRSS("https://www.espn.com/espn/rss/nfl/news", "nfl-feed", footballIcon);
+      loadRSS("https://www.espn.com/espn/rss/mlb/news", "mlb-feed", baseballIcon);
+  </script>  
   </div>
 </body>
 </html>
