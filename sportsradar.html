@@ -17,10 +17,8 @@
       <div class="article-area">
         <h2>NBA News</h2>
         <div id="nba-feed"></div>
-    
         <h2>NFL News</h2>
         <div id="nfl-feed"></div>
-    
         <h2>MLB News</h2>
         <div id="mlb-feed"></div>
     </div>
@@ -52,13 +50,9 @@
                   document.getElementById(elementId).innerHTML = output;
               });
       }
-  
-      // Updated sport-specific images
       const basketballIcon = "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png";
       const footballIcon = "https://m.media-amazon.com/images/I/61ceQO+CuVL._AC_UF1000,1000_QL80_.jpg";
-      const baseballIcon = "https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/Baseball_%28crop%29.jpg/800px-Baseball_%28crop%29.jpg";
-  
-      // Load RSS Feeds with sport icons
+      const baseballIcon = "https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/Baseball_%28crop%29.jpg/800px-Baseball_%28crop%29.jpg";      
       loadRSS("https://www.espn.com/espn/rss/nba/news", "nba-feed", basketballIcon);
       loadRSS("https://www.espn.com/espn/rss/nfl/news", "nfl-feed", footballIcon);
       loadRSS("https://www.espn.com/espn/rss/mlb/news", "mlb-feed", baseballIcon);
