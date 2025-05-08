@@ -5,27 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SportsRadar</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
-<body>
+<body>  
   <header>
     <h1>SportsRadar</h1>
     <img src="images/logo.webp" alt="SportsRadar">
+    <button id="darkModeToggle" class="secondary-button">Toggle Dark Mode</button>
   </header>
+
+  <nav>
+    <ul>
+      <li><a href="#nba">NBA</a></li>
+      <li><a href="#nfl">NFL</a></li>
+      <li><a href="#mlb">MLB</a></li>
+      <li><a href="#nhl">NHL</a></li>
+      <li><a href="#golf">Golf</a></li>
+      <li><a href="#soccer">Soccer</a></li>
+    </ul> 
+  </nav>
 
   <div class="container">
     <h2>Featured Articles</h2>
     <p>See below for the latest sports news and articles!</p>
 
-    <div class="article-area">
+    <div class="team-selector">
+      <h2>Select Your Favorite Teams</h2>
+      <select id="teamSelect" multiple></select>
+      <div style="margin-top: 10px;">
+        <button id="applyTeams">Filter Articles</button>
+        <button id="clearTeams">Clear Selection</button>
+      </div>
+    </div>
+
+    <div id="nba">
       <h2>NBA News</h2>
       <div id="nba-feed"></div>
+    </div>
+
+    <div id="nfl">
       <h2>NFL News</h2>
       <div id="nfl-feed"></div>
+    </div>
+
+    <div id="mlb">
       <h2>MLB News</h2>
       <div id="mlb-feed"></div>
     </div>
 
-    <!-- CONTACT BUTTON -->
+    <div id="nhl">
+      <h2>NHL News</h2>
+      <div id="nhl-feed"></div>
+    </div>
+
+    <div id="golf">
+      <h2>Golf News</h2>
+      <div id="golf-feed"></div>
+    </div>
+
+    <div id="soccer">
+      <h2>Soccer News</h2>
+      <div id="soccer-feed"></div>
+    </div>
+
     <div style="text-align: center; margin-top: 30px;">
       <a href="contact.html">
         <button>Contact Us</button>
@@ -34,42 +82,203 @@
 
   </div>
 
-  <script>
-    function loadRSS(feedUrl, elementId, sportIcon) {
-      fetch(feedUrl)
-        .then(response => response.text())
-        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-        .then(data => {
-          let items = data.querySelectorAll("item");
-          let output = "";
-          items.forEach((el, index) => {
-            if (index < 5) {
-              let title = el.querySelector("title").textContent;
-              let link = el.querySelector("link").textContent;
-              let description = el.querySelector("description") ? el.querySelector("description").textContent : "";
+<script>
+window.onload = function() {
+  const teamsByLeague = {
+  NBA: [
+    "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets", "Chicago Bulls",
+    "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets", "Detroit Pistons", "Golden State Warriors",
+    "Houston Rockets", "Indiana Pacers", "Los Angeles Clippers", "Los Angeles Lakers", "Memphis Grizzlies",
+    "Miami Heat", "Milwaukee Bucks", "Minnesota Timberwolves", "New Orleans Pelicans", "New York Knicks",
+    "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns", "Portland Trail Blazers",
+    "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors", "Utah Jazz", "Washington Wizards"
+  ],
+  NFL: [
+    "Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills", "Carolina Panthers",
+    "Chicago Bears", "Cincinnati Bengals", "Cleveland Browns", "Dallas Cowboys", "Denver Broncos",
+    "Detroit Lions", "Green Bay Packers", "Houston Texans", "Indianapolis Colts", "Jacksonville Jaguars",
+    "Kansas City Chiefs", "Las Vegas Raiders", "Los Angeles Chargers", "Los Angeles Rams", "Miami Dolphins",
+    "Minnesota Vikings", "New England Patriots", "New Orleans Saints", "New York Giants", "New York Jets",
+    "Philadelphia Eagles", "Pittsburgh Steelers", "San Francisco 49ers", "Seattle Seahawks", "Tampa Bay Buccaneers",
+    "Tennessee Titans", "Washington Commanders"
+  ],
+  MLB: [
+    "Arizona Diamondbacks", "Atlanta Braves", "Baltimore Orioles", "Boston Red Sox", "Chicago White Sox",
+    "Chicago Cubs", "Cincinnati Reds", "Cleveland Guardians", "Colorado Rockies", "Detroit Tigers",
+    "Houston Astros", "Kansas City Royals", "Los Angeles Angels", "Los Angeles Dodgers", "Miami Marlins",
+    "Milwaukee Brewers", "Minnesota Twins", "New York Yankees", "New York Mets", "Oakland Athletics",
+    "Philadelphia Phillies", "Pittsburgh Pirates", "San Diego Padres", "San Francisco Giants", "Seattle Mariners",
+    "St. Louis Cardinals", "Tampa Bay Rays", "Texas Rangers", "Toronto Blue Jays", "Washington Nationals"
+  ],
+  NHL: [
+    "Anaheim Ducks", "Arizona Coyotes", "Boston Bruins", "Buffalo Sabres", "Calgary Flames",
+    "Carolina Hurricanes", "Chicago Blackhawks", "Colorado Avalanche", "Columbus Blue Jackets", "Dallas Stars",
+    "Detroit Red Wings", "Edmonton Oilers", "Florida Panthers", "Los Angeles Kings", "Minnesota Wild",
+    "Montreal Canadiens", "Nashville Predators", "New Jersey Devils", "New York Islanders", "New York Rangers",
+    "Ottawa Senators", "Philadelphia Flyers", "Pittsburgh Penguins", "San Jose Sharks", "Seattle Kraken",
+    "St. Louis Blues", "Tampa Bay Lightning", "Toronto Maple Leafs", "Vancouver Canucks", "Vegas Golden Knights",
+    "Washington Capitals", "Winnipeg Jets"
+  ]
+};
 
-              output += `
-                <div class="article-card">
-                  <img src="${sportIcon}" alt="Sport Icon">
-                  <div class="article-content">
-                    <h3><a href="${link}" target="_blank">${title}</a></h3>
-                    <p>${description}</p>
-                  </div>
+
+  const basketballIcon = "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png";
+  const footballIcon = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/American_football.svg/60px-American_football.svg.png";
+  const baseballIcon = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Baseball.svg/60px-Baseball.svg.png";
+  const hockeyIcon = "https://imgs.search.brave.com/PyVJOAqVBZr56hOehTeLHcfS9TEqfLZRniy6wJOGAZs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmdp/bWcuY29tL3VwbG9h/ZHMvaG9ja2V5L2hv/Y2tleV9QTkc5NC5w/bmc";
+  const golfIcon = "https://imgs.search.brave.com/s8qliBzm9ui4shOPeW8ZBv7gHGLkO6fYUrPAw398ZFw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvcHJl/dmlld3MvMDEzLzM2/Mi82MTMvbm9uXzJ4/L2dvbGYtYmFsbC10/cmFuc3BhcmVudC1m/cmVlLXBuZy5wbmc";
+  const soccerIcon = "https://upload.wikimedia.org/wikipedia/commons/e/ec/Soccer_ball.svg";
+
+  const teamSelect = document.getElementById('teamSelect');
+const choices = new Choices(teamSelect, {
+  removeItemButton: true,   // Ensure the X button is available
+  searchPlaceholderValue: 'Search teams...',
+  shouldSort: false,        // This prevents sorting if you need to keep the original order
+  placeholder: true,
+  placeholderValue: 'Select your favorite teams',
+});
+
+  function populateTeamOptions() {
+  const groupedOptions = [];
+
+  for (const league in teamsByLeague) {
+    groupedOptions.push({
+      label: league,
+      id: league.toLowerCase(),
+      choices: teamsByLeague[league].map(team => ({
+        value: team,
+        label: team
+      }))
+    });
+  }
+
+  choices.setChoices(groupedOptions, 'value', 'label', true);
+}
+
+  populateTeamOptions();
+
+  let userSelectedTeams = JSON.parse(localStorage.getItem('favoriteTeams')) || [];
+  choices.setChoiceByValue(userSelectedTeams);
+
+  function teamMatchesArticle(articleText, selectedTeams) {
+    return selectedTeams.some(team => articleText.toLowerCase().includes(team));
+  }
+
+  function loadRSS(feedUrl, elementId, sportIcon) {
+    fetch(feedUrl)
+      .then(response => response.text())
+      .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+      .then(data => {
+        let items = data.querySelectorAll("item");
+        let output = "";
+        items.forEach((el, index) => {
+          if (index < 5) {
+            let title = el.querySelector("title").textContent;
+            let link = el.querySelector("link").textContent;
+            let description = el.querySelector("description") ? el.querySelector("description").textContent : "";
+
+            output += `
+              <div class="article-card">
+                <img src="${sportIcon}" alt="Sport Icon">
+                <div class="article-content">
+                  <h3><a href="${link}" target="_blank">${title}</a></h3>
+                  <p>${description}</p>
                 </div>
-              `;
-            }
-          });
-          document.getElementById(elementId).innerHTML = output;
+              </div>
+            `;
+          }
         });
-    }
+        document.getElementById(elementId).innerHTML = output;
+      });
+  }
 
-    const basketballIcon = "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png";
-    const footballIcon = "https://m.media-amazon.com/images/I/61ceQO+CuVL._AC_UF1000,1000_QL80_.jpg";
-    const baseballIcon = "https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/Baseball_%28crop%29.jpg/800px-Baseball_%28crop%29.jpg";
+  function loadRSSFiltered(feedUrl, elementId, sportIcon, selectedTeams) {
+  fetch(feedUrl)
+    .then(response => response.text())
+    .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+    .then(data => {
+      let items = data.querySelectorAll("item");
+      let output = "";
+      let matchedCount = 0;
+      items.forEach(el => {
+        let title = el.querySelector("title").textContent;
+        let link = el.querySelector("link").textContent;
+        let description = el.querySelector("description") ? el.querySelector("description").textContent : "";
 
-    loadRSS("https://www.espn.com/espn/rss/nba/news", "nba-feed", basketballIcon);
-    loadRSS("https://www.espn.com/espn/rss/nfl/news", "nfl-feed", footballIcon);
-    loadRSS("https://www.espn.com/espn/rss/mlb/news", "mlb-feed", baseballIcon);
-  </script>
+        let combinedText = `${title} ${description}`;
+
+        // Filter by selected teams
+        if (selectedTeams.length === 0 || teamMatchesArticle(combinedText, selectedTeams)) {
+          if (matchedCount < 5) {
+            output += `
+              <div class="article-card">
+                <img src="${sportIcon}" alt="Sport Icon">
+                <div class="article-content">
+                  <h3><a href="${link}" target="_blank">${title}</a></h3>
+                  <p>${description}</p>
+                </div>
+              </div>
+            `;
+            matchedCount++;
+          }
+        }
+      });
+      document.getElementById(elementId).innerHTML = output || "<p>No matching articles found.</p>";
+    });
+}
+
+// Make sure Golf and Soccer are filtered as well
+function loadAllFeeds(selectedTeams) {
+  loadRSSFiltered("https://www.espn.com/espn/rss/nba/news", "nba-feed", basketballIcon, selectedTeams);
+  loadRSSFiltered("https://www.espn.com/espn/rss/nfl/news", "nfl-feed", footballIcon, selectedTeams);
+  loadRSSFiltered("https://www.espn.com/espn/rss/mlb/news", "mlb-feed", baseballIcon, selectedTeams);
+  loadRSSFiltered("https://www.espn.com/espn/rss/nhl/news", "nhl-feed", hockeyIcon, selectedTeams);
+
+  // Apply filtering logic here as well
+  loadRSSFiltered("https://www.espn.com/espn/rss/golf/news", "golf-feed", golfIcon, selectedTeams);
+  loadRSSFiltered("https://www.espn.com/espn/rss/soccer/news", "soccer-feed", soccerIcon, selectedTeams);
+}
+
+  loadAllFeeds(userSelectedTeams);
+
+  document.getElementById('applyTeams').addEventListener('click', () => {
+  let userSelectedTeams = choices.getValue(true).map(t => t.toLowerCase());
+  localStorage.setItem('favoriteTeams', JSON.stringify(userSelectedTeams));
+  loadAllFeeds(userSelectedTeams);  // Ensure this uses the updated user selected teams
+});
+
+document.getElementById('clearTeams').addEventListener('click', () => {
+  choices.clearStore();  // Clears all stored selections in Choices.js
+  userSelectedTeams = []; // Clear selected teams
+  localStorage.removeItem('favoriteTeams');
+  loadAllFeeds([]);  // Clear all feeds
+});
+};
+
+ // Dark Mode
+const darkModeToggle = document.getElementById('darkModeToggle');
+function enableDarkMode() {
+  document.body.classList.add('dark-mode');
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+function disableDarkMode() {
+  document.body.classList.remove('dark-mode');
+  localStorage.setItem('darkMode', 'disabled');
+}
+
+// Load saved preference
+if (localStorage.getItem('darkMode') === 'enabled') { 
+  enableDarkMode();
+}
+
+darkModeToggle.addEventListener('click', () => {
+  if (document.body.classList.contains('dark-mode')) {
+    disableDarkMode();
+  } else {
+    enableDarkMode();
+  }
+});
+</script>
 </body>
 </html>
