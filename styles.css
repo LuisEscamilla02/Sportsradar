@@ -1,183 +1,176 @@
-/* ===== Global Styling ===== */
+/* General Body Styling */
 body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fdfdfd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
     color: #222;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
 }
 
-/* ===== Container ===== */
+/* Container */
 .container {
     width: 90%;
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 30px auto;
     background: #ffffff;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== Header ===== */
+/* Header */
 header {
     background-color: #1e3a8a;
     color: white;
     text-align: center;
-    padding: 30px 15px;
-    border-bottom: 3px solid #ff5722;
+    padding: 20px 10px;
+    border-bottom: 4px solid #ff4500;
 }
 
 header img {
-    max-width: 110px;
-    margin: 15px auto;
+    max-width: 120px;
+    margin: 10px auto;
 }
 
 header h1 {
-    font-size: 52px;
+    font-size: 48px;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
 }
 
-/* ===== Links ===== */
+/* Links */
 a {
-    color: #e53935;
+    color: #d91e18;
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #ff7043;
+    color: #ff4500;
     text-decoration: underline;
 }
 
-/* ===== Headings ===== */
-h1, h2, h3 {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    letter-spacing: 0.5px;
-}
-
-h2 {
-    font-size: 30px;
-    border-bottom: 2px solid #ff7043;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-}
-
+/* Article Area */
 .article-area h3 {
-    font-size: 22px;
+    font-size: 20px;
     color: #1e3a8a;
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 .article-area a {
     font-size: 18px;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .article-area p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 24px;
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 25px;
 }
 
-/* ===== Article Cards ===== */
+/* Headings */
+h1, h2 {
+    font-family: 'Segoe UI Black', sans-serif;
+    letter-spacing: 1px;
+}
+
+h2 {
+    border-bottom: 2px solid #ff4500;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+    font-size: 28px;
+}
+
+/* Article Card */
 .article-card {
     display: flex;
     align-items: flex-start;
     background: #fafafa;
-    margin: 24px 0;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
 }
 
 .article-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 }
 
 .article-card img {
-    width: 110px;
-    border-radius: 10px;
-    margin-right: 24px;
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
 }
 
 .article-content h3 {
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
 }
 
 .article-content a {
-    color: #e53935;
+    color: #d91e18;
 }
 
 .article-content a:hover {
-    color: #ff7043;
+    color: #ff4500;
 }
 
-/* ===== Contact Form ===== */
+/* Contact Form */
 form {
     background: #fafafa;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-    margin-top: 30px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-top: 25px;
 }
 
 form label {
     font-weight: 600;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 input, textarea {
     width: 100%;
-    padding: 14px;
-    margin-bottom: 18px;
-    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    font-size: 16px;
-    transition: border 0.3s ease;
+    font-size: 15px;
 }
 
-input:focus, textarea:focus {
-    border-color: #1e3a8a;
-    outline: none;
-}
-
-/* ===== Buttons ===== */
+/* Primary Button */
 button {
     background: linear-gradient(135deg, #1e3a8a, #3b82f6);
     color: white;
-    padding: 16px 32px;
-    font-size: 17px;
+    padding: 14px 28px;
+    font-size: 16px;
     font-weight: 600;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 12px rgba(30, 58, 138, 0.3);
+    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.4);
 }
 
 button:hover {
     background: linear-gradient(135deg, #142a5f, #2563eb);
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(30, 58, 138, 0.5);
+    box-shadow: 0 6px 14px rgba(30, 58, 138, 0.6);
 }
 
 /* Secondary Button */
 .secondary-button {
     background-color: transparent;
     color: #1e3a8a;
-    padding: 14px 28px;
+    padding: 12px 24px;
     font-size: 16px;
     font-weight: 600;
     border: 2px solid #1e3a8a;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -187,45 +180,64 @@ button:hover {
     color: white;
 }
 
-/* ===== Navigation ===== */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+    .article-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .article-card img {
+        margin-bottom: 12px;
+    }
+    form {
+        padding: 20px;
+    }
+}
 nav ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
-}
-
-nav ul li {
+  }
+  
+  nav ul li {
     display: inline;
     margin: 0 15px;
-}
-
-nav ul li a {
+  }
+  
+  nav ul li a {
     text-decoration: none;
     font-size: 18px;
-    color: #1e3a8a;
+    color: #000;
     font-weight: bold;
-}
+  }
+  
+  nav ul li a:hover {
+    color: #007BFF;
+  }
 
-nav ul li a:hover {
-    color: #2563eb;
-}
-
-/* ===== Dark Mode ===== */
+ /* ===== Dark Mode ===== */
 body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
+    background-color: #181818;
+    color: #f5f5f5;
 }
 
+/* Container */
 body.dark-mode .container {
     background: #1e1e1e;
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
 }
 
+/* Header */
 body.dark-mode header {
     background-color: #1f2a46;
-    border-bottom: 3px solid #ff5722;
+    border-bottom: 4px solid #ff5722;
 }
 
+/* Links */
 body.dark-mode a {
     color: #90caf9;
 }
@@ -234,8 +246,8 @@ body.dark-mode a:hover {
     color: #ff8a65;
 }
 
-body.dark-mode .article-area h3,
-body.dark-mode .article-content a {
+/* Article Area */
+body.dark-mode .article-area h3 {
     color: #90caf9;
 }
 
@@ -243,16 +255,20 @@ body.dark-mode .article-area p {
     color: #cccccc;
 }
 
+/* Article Card */
 body.dark-mode .article-card {
     background: #2a2a2a;
+    border-color: #444;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* Contact Form */
 body.dark-mode form {
     background: #2a2a2a;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
+/* Input Fields */
 body.dark-mode input,
 body.dark-mode textarea {
     background-color: #333;
@@ -260,15 +276,17 @@ body.dark-mode textarea {
     border: 1px solid #555;
 }
 
+/* Primary Button */
 body.dark-mode button {
     background: linear-gradient(135deg, #0d47a1, #1976d2);
-    box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4);
+    box-shadow: 0 4px 10px rgba(13, 71, 161, 0.4);
 }
 
 body.dark-mode button:hover {
     background: linear-gradient(135deg, #08306b, #1565c0);
 }
 
+/* Secondary Button */
 body.dark-mode .secondary-button {
     color: #90caf9;
     border-color: #90caf9;
@@ -279,7 +297,7 @@ body.dark-mode .secondary-button:hover {
     color: #121212;
 }
 
-/* Nav dark mode */
+/* Nav Links */
 body.dark-mode nav ul li a {
     color: #90caf9;
 }
@@ -288,25 +306,52 @@ body.dark-mode nav ul li a:hover {
     color: #ff8a65;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 25px;
-    }
-    .article-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .article-card img {
-        margin-bottom: 15px;
-    }
-    form {
-        padding: 25px;
-    }
+/* Dark Mode Styling for Select Dropdown with Choices.js */
+body.dark-mode .choices__inner {
+    background-color: #333;
+    color: #f5f5f5;
+    border: 1px solid #555;
 }
 
-/* ===== Dark Mode Toggle Button ===== */
+body.dark-mode .choices__item {
+    background-color: #444;
+    color: #f5f5f5;
+}
+
+body.dark-mode .choices__item--selectable {
+    background-color: #555;
+}
+
+/* Hover effect for better visibility */
+body.dark-mode .choices__item--selectable:hover {
+    background-color: #444; /* Darker background on hover */
+    color: #ffffff; /* Ensure the text stays visible with white color */
+}
+
+/* Ensure the item text is still readable when selected */
+body.dark-mode .choices__item--selectable.choices__item--selected {
+    background-color: #555;
+    color: #ffffff;
+}
+
+/* Focused/active item on hover */
+body.dark-mode .choices__item--active {
+    background-color: #444;
+    color: #ffffff;
+}
+
+/* Reset light mode select styles */
+select {
+    background-color: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Dark Mode Button (Fixed to the top-right corner) */
+body.dark-mode #darkModeToggle,
 #darkModeToggle {
     position: fixed;
     top: 20px;
@@ -314,16 +359,12 @@ body.dark-mode nav ul li a:hover {
     background-color: #1e3a8a;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-size: 16px;
-    border-radius: 10px;
     cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-#darkModeToggle:hover {
-    background-color: #0d47a1;
 }
 
 body.dark-mode #darkModeToggle {
@@ -332,4 +373,8 @@ body.dark-mode #darkModeToggle {
 
 body.dark-mode #darkModeToggle:hover {
     background-color: #e64a19;
+}
+
+#darkModeToggle:hover {
+    background-color: #0d47a1;
 }
