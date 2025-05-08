@@ -1,204 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Styles -->
-<link rel="stylesheet" href="styles.css" />
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SportsRadar</title>
-
-  <!-- Choices.js -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    header img {
-      max-width: 150px;
-      margin-top: 10px;
-    }
-    .container {
-      max-width: 960px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    .article-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px 0;
-      border-bottom: 1px solid #ddd;
-    }
-    .article-card img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-    }
-    .article-content h3 {
-      margin: 0;
-    }
-    #team-selector {
-      background: #eef;
-      padding: 15px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-    button {
-      margin-top: 10px;
-      margin-right: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <h1>SportsRadar</h1>
-    <img src="/Users/luisescamilla/Downloads/DALL·E 2025-03-06 11.42.42" alt="SportsRadar Logo">
+    <img src="images/logo.webp" alt="SportsRadar">
   </header>
 
   <div class="container">
-    <h2>Customize Your Feed</h2>
+    <h2>Featured Articles</h2>
+    <p>See below for the latest sports news and articles!</p>
 
-    <div id="team-selector">
-      <h3>Select Your Favorite Teams</h3>
-      <select id="team-select" multiple>
-        <!-- All MLB, NFL, NBA Teams -->
-        <option value="Arizona Diamondbacks">Arizona Diamondbacks</option>
-        <option value="Atlanta Braves">Atlanta Braves</option>
-        <option value="Baltimore Orioles">Baltimore Orioles</option>
-        <option value="Boston Red Sox">Boston Red Sox</option>
-        <option value="Chicago Cubs">Chicago Cubs</option>
-        <option value="Chicago White Sox">Chicago White Sox</option>
-        <option value="Cincinnati Reds">Cincinnati Reds</option>
-        <option value="Cleveland Guardians">Cleveland Guardians</option>
-        <option value="Colorado Rockies">Colorado Rockies</option>
-        <option value="Detroit Tigers">Detroit Tigers</option>
-        <option value="Houston Astros">Houston Astros</option>
-        <option value="Kansas City Royals">Kansas City Royals</option>
-        <option value="Los Angeles Angels">Los Angeles Angels</option>
-        <option value="Los Angeles Dodgers">Los Angeles Dodgers</option>
-        <option value="Miami Marlins">Miami Marlins</option>
-        <option value="Milwaukee Brewers">Milwaukee Brewers</option>
-        <option value="Minnesota Twins">Minnesota Twins</option>
-        <option value="New York Mets">New York Mets</option>
-        <option value="New York Yankees">New York Yankees</option>
-        <option value="Philadelphia Phillies">Philadelphia Phillies</option>
-        <option value="Pittsburgh Pirates">Pittsburgh Pirates</option>
-        <option value="San Diego Padres">San Diego Padres</option>
-        <option value="San Francisco Giants">San Francisco Giants</option>
-        <option value="Seattle Mariners">Seattle Mariners</option>
-        <option value="St. Louis Cardinals">St. Louis Cardinals</option>
-        <option value="Tampa Bay Rays">Tampa Bay Rays</option>
-        <option value="Texas Rangers">Texas Rangers</option>
-        <option value="Toronto Blue Jays">Toronto Blue Jays</option>
-        <option value="Washington Nationals">Washington Nationals</option>
-        <option value="Arizona Cardinals">Arizona Cardinals</option>
-        <option value="Atlanta Falcons">Atlanta Falcons</option>
-        <option value="Baltimore Ravens">Baltimore Ravens</option>
-        <option value="Buffalo Bills">Buffalo Bills</option>
-        <option value="Carolina Panthers">Carolina Panthers</option>
-        <option value="Chicago Bears">Chicago Bears</option>
-        <option value="Cincinnati Bengals">Cincinnati Bengals</option>
-        <option value="Cleveland Browns">Cleveland Browns</option>
-        <option value="Dallas Cowboys">Dallas Cowboys</option>
-        <option value="Denver Broncos">Denver Broncos</option>
-        <option value="Detroit Lions">Detroit Lions</option>
-        <option value="Green Bay Packers">Green Bay Packers</option>
-        <option value="Houston Texans">Houston Texans</option>
-        <option value="Indianapolis Colts">Indianapolis Colts</option>
-        <option value="Jacksonville Jaguars">Jacksonville Jaguars</option>
-        <option value="Kansas City Chiefs">Kansas City Chiefs</option>
-        <option value="Las Vegas Raiders">Las Vegas Raiders</option>
-        <option value="Los Angeles Chargers">Los Angeles Chargers</option>
-        <option value="Los Angeles Rams">Los Angeles Rams</option>
-        <option value="Miami Dolphins">Miami Dolphins</option>
-        <option value="Minnesota Vikings">Minnesota Vikings</option>
-        <option value="New England Patriots">New England Patriots</option>
-        <option value="New Orleans Saints">New Orleans Saints</option>
-        <option value="New York Giants">New York Giants</option>
-        <option value="New York Jets">New York Jets</option>
-        <option value="Philadelphia Eagles">Philadelphia Eagles</option>
-        <option value="Pittsburgh Steelers">Pittsburgh Steelers</option>
-        <option value="San Francisco 49ers">San Francisco 49ers</option>
-        <option value="Seattle Seahawks">Seattle Seahawks</option>
-        <option value="Tampa Bay Buccaneers">Tampa Bay Buccaneers</option>
-        <option value="Tennessee Titans">Tennessee Titans</option>
-        <option value="Washington Commanders">Washington Commanders</option>
-        <option value="Atlanta Hawks">Atlanta Hawks</option>
-        <option value="Boston Celtics">Boston Celtics</option>
-        <option value="Brooklyn Nets">Brooklyn Nets</option>
-        <option value="Charlotte Hornets">Charlotte Hornets</option>
-        <option value="Chicago Bulls">Chicago Bulls</option>
-        <option value="Cleveland Cavaliers">Cleveland Cavaliers</option>
-        <option value="Dallas Mavericks">Dallas Mavericks</option>
-        <option value="Denver Nuggets">Denver Nuggets</option>
-        <option value="Detroit Pistons">Detroit Pistons</option>
-        <option value="Golden State Warriors">Golden State Warriors</option>
-        <option value="Houston Rockets">Houston Rockets</option>
-        <option value="Indiana Pacers">Indiana Pacers</option>
-        <option value="Los Angeles Clippers">Los Angeles Clippers</option>
-        <option value="Los Angeles Lakers">Los Angeles Lakers</option>
-        <option value="Memphis Grizzlies">Memphis Grizzlies</option>
-        <option value="Miami Heat">Miami Heat</option>
-        <option value="Milwaukee Bucks">Milwaukee Bucks</option>
-        <option value="Minnesota Timberwolves">Minnesota Timberwolves</option>
-        <option value="New Orleans Pelicans">New Orleans Pelicans</option>
-        <option value="New York Knicks">New York Knicks</option>
-        <option value="Oklahoma City Thunder">Oklahoma City Thunder</option>
-        <option value="Orlando Magic">Orlando Magic</option>
-        <option value="Philadelphia 76ers">Philadelphia 76ers</option>
-        <option value="Phoenix Suns">Phoenix Suns</option>
-        <option value="Portland Trail Blazers">Portland Trail Blazers</option>
-        <option value="Sacramento Kings">Sacramento Kings</option>
-        <option value="San Antonio Spurs">San Antonio Spurs</option>
-        <option value="Toronto Raptors">Toronto Raptors</option>
-        <option value="Utah Jazz">Utah Jazz</option>
-        <option value="Washington Wizards">Washington Wizards</option>
-      </select><br>
-      <button onclick="saveTeams()">Save Preferences</button>
-      <button onclick="clearTeams()">Clear Preferences</button>
-    </div>
-    <nav style="background: var(--primary); padding: 10px; text-align: center;">
-      <a href="#" style="color:white; margin: 0 15px;">Home</a>
-      <a href="#" style="color:white; margin: 0 15px;">NBA</a>
-      <a href="#" style="color:white; margin: 0 15px;">NFL</a>
-      <a href="#" style="color:white; margin: 0 15px;">MLB</a>
-    </nav>
-    
-    <!-- News Sections -->
     <div class="article-area">
       <h2>NBA News</h2>
-      <div id="nba-feed">Loading...</div>
-
+      <div id="nba-feed"></div>
       <h2>NFL News</h2>
-      <div id="nfl-feed">Loading...</div>
-
+      <div id="nfl-feed"></div>
       <h2>MLB News</h2>
-      <div id="mlb-feed">Loading...</div>
+      <div id="mlb-feed"></div>
     </div>
+
+    <!-- CONTACT BUTTON -->
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="contact.html">
+        <button>Contact Us</button>
+      </a>
+    </div>
+
   </div>
 
-  <!-- Your RSS loader -->
-<script src="loadrss.js" defer></script>
+  <script>
+    function loadRSS(feedUrl, elementId, sportIcon) {
+      fetch(feedUrl)
+        .then(response => response.text())
+        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+        .then(data => {
+          let items = data.querySelectorAll("item");
+          let output = "";
+          items.forEach((el, index) => {
+            if (index < 5) {
+              let title = el.querySelector("title").textContent;
+              let link = el.querySelector("link").textContent;
+              let description = el.querySelector("description") ? el.querySelector("description").textContent : "";
 
+              output += `
+                <div class="article-card">
+                  <img src="${sportIcon}" alt="Sport Icon">
+                  <div class="article-content">
+                    <h3><a href="${link}" target="_blank">${title}</a></h3>
+                    <p>${description}</p>
+                  </div>
+                </div>
+              `;
+            }
+          });
+          document.getElementById(elementId).innerHTML = output;
+        });
+    }
+
+    const basketballIcon = "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png";
+    const footballIcon = "https://m.media-amazon.com/images/I/61ceQO+CuVL._AC_UF1000,1000_QL80_.jpg";
+    const baseballIcon = "https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/Baseball_%28crop%29.jpg/800px-Baseball_%28crop%29.jpg";
+
+    loadRSS("https://www.espn.com/espn/rss/nba/news", "nba-feed", basketballIcon);
+    loadRSS("https://www.espn.com/espn/rss/nfl/news", "nfl-feed", footballIcon);
+    loadRSS("https://www.espn.com/espn/rss/mlb/news", "mlb-feed", baseballIcon);
+  </script>
 </body>
-
-<footer style="background:#333; color:white; text-align:center; padding: 20px; margin-top: 40px;">
-  &copy; 2025 SportsRadar. All rights reserved.
-</footer>
-
 </html>
-
