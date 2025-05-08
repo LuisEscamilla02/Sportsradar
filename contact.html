@@ -1,39 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - SportsRadar</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SportsRadar</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .navbar {
+            background-color: #0056b3;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 12px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+
+        #contact-form-section {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            padding: 14px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #003d7a;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Contact SportsRadar</h1>
-    <img src="images/logo.webp" alt="SportsRadar">
-  </header>
 
-  <div class="container">
-    <h2>Get in Touch</h2>
-    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+    <nav class="navbar">
+        <a href="sportsradar.html">Home</a>
+    </nav>
 
-    <form action="https://formsubmit.co/luis.escamilla@sjsu.edu" method="POST">
-      <!-- Redirect to MainPage.html after submission -->
-      <input type="hidden" name="_next" value="sportsradar.html">
+    <section id="contact-form-section">
+        <h2>Contact Us</h2>
+        <form action="https://formspree.io/f/meogkpnk" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="_replyto" required>
 
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br><br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
 
-      <label for="phone">Phone Number:</label><br>
-      <input type="tel" id="phone" name="phone"><br><br>
+            <button type="submit">Submit</button>
+        </form>        
+    </section>
 
-      <label for="message">Your Comments or Questions:</label><br>
-      <textarea id="message" name="message" rows="5" required></textarea><br><br>
+    <div class="contact-info">
+        <p>If you have any questions, feel free to reach out. We're happy to assist!</p>
+    </div>
 
-      <button type="submit">Submit</button>
-    </form>
-  </div>
 </body>
 </html>
