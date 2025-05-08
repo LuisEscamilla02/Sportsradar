@@ -197,3 +197,184 @@ button:hover {
         padding: 20px;
     }
 }
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    color: #007BFF;
+  }
+
+ /* ===== Dark Mode ===== */
+body.dark-mode {
+    background-color: #181818;
+    color: #f5f5f5;
+}
+
+/* Container */
+body.dark-mode .container {
+    background: #1e1e1e;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+body.dark-mode header {
+    background-color: #1f2a46;
+    border-bottom: 4px solid #ff5722;
+}
+
+/* Links */
+body.dark-mode a {
+    color: #90caf9;
+}
+
+body.dark-mode a:hover {
+    color: #ff8a65;
+}
+
+/* Article Area */
+body.dark-mode .article-area h3 {
+    color: #90caf9;
+}
+
+body.dark-mode .article-area p {
+    color: #cccccc;
+}
+
+/* Article Card */
+body.dark-mode .article-card {
+    background: #2a2a2a;
+    border-color: #444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Contact Form */
+body.dark-mode form {
+    background: #2a2a2a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Input Fields */
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #333;
+    color: #f5f5f5;
+    border: 1px solid #555;
+}
+
+/* Primary Button */
+body.dark-mode button {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    box-shadow: 0 4px 10px rgba(13, 71, 161, 0.4);
+}
+
+body.dark-mode button:hover {
+    background: linear-gradient(135deg, #08306b, #1565c0);
+}
+
+/* Secondary Button */
+body.dark-mode .secondary-button {
+    color: #90caf9;
+    border-color: #90caf9;
+}
+
+body.dark-mode .secondary-button:hover {
+    background-color: #90caf9;
+    color: #121212;
+}
+
+/* Nav Links */
+body.dark-mode nav ul li a {
+    color: #90caf9;
+}
+
+body.dark-mode nav ul li a:hover {
+    color: #ff8a65;
+}
+
+/* Dark Mode Styling for Select Dropdown with Choices.js */
+body.dark-mode .choices__inner {
+    background-color: #333;
+    color: #f5f5f5;
+    border: 1px solid #555;
+}
+
+body.dark-mode .choices__item {
+    background-color: #444;
+    color: #f5f5f5;
+}
+
+body.dark-mode .choices__item--selectable {
+    background-color: #555;
+}
+
+/* Hover effect for better visibility */
+body.dark-mode .choices__item--selectable:hover {
+    background-color: #444; /* Darker background on hover */
+    color: #ffffff; /* Ensure the text stays visible with white color */
+}
+
+/* Ensure the item text is still readable when selected */
+body.dark-mode .choices__item--selectable.choices__item--selected {
+    background-color: #555;
+    color: #ffffff;
+}
+
+/* Focused/active item on hover */
+body.dark-mode .choices__item--active {
+    background-color: #444;
+    color: #ffffff;
+}
+
+/* Reset light mode select styles */
+select {
+    background-color: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Dark Mode Button (Fixed to the top-right corner) */
+body.dark-mode #darkModeToggle,
+#darkModeToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+body.dark-mode #darkModeToggle {
+    background-color: #ff5722;
+}
+
+body.dark-mode #darkModeToggle:hover {
+    background-color: #e64a19;
+}
+
+#darkModeToggle:hover {
+    background-color: #0d47a1;
+}
